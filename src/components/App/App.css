@@ -1,0 +1,335 @@
+@layer components {
+	.app-shell {
+		min-height: 100svh;
+		display: grid;
+		place-items: center;
+		align-content: center;
+		gap: var(--space-6);
+		padding: var(--space-6);
+		background: var(--color-bg);
+	}
+
+	.wishes {
+		text-align: center;
+		animation: flowerDrop 2.8s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+	}
+
+	.wishes h1 {
+		margin: 0;
+		font-size: clamp(1.5rem, 4.2vw, 2.25rem);
+		line-height: 1.2;
+		color: var(--color-text);
+	}
+
+	.click-hint {
+		margin: 0;
+		font-size: clamp(0.9rem, 2.6vw, 1rem);
+		letter-spacing: 0.03em;
+		color: var(--color-muted);
+		animation: hintBreath 2.4s ease-in-out infinite;
+	}
+
+	.petal-rain {
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+		overflow: hidden;
+		z-index: 20;
+	}
+
+	.rain-petal {
+		position: absolute;
+		top: -12vh;
+		width: var(--size, 0.85rem);
+		height: calc(var(--size, 0.85rem) * 0.62);
+		border-radius: 999px;
+		background: var(--color-petal-1);
+		opacity: 0.9;
+		transform: rotate(var(--rotation, 0deg));
+		animation: petalFall var(--duration, 3.4s) linear var(--delay, 0s) forwards;
+	}
+
+	.rain-petal:nth-child(odd) {
+		background: var(--color-petal-2);
+	}
+
+	.flower-stage {
+		position: relative;
+		width: min(90vw, 28rem);
+		aspect-ratio: 1 / 1.2;
+		margin-inline: auto;
+		display: grid;
+		place-items: center;
+		animation: flowerDrop 2.8s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+	}
+
+	.flower-glow {
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		translate: -50% -50%;
+		width: 72%;
+		aspect-ratio: 1;
+		border-radius: 999px;
+		background: radial-gradient(circle at center, var(--color-accent-soft), transparent 72%);
+		animation: glowPulse var(--motion-slow) ease-in-out infinite;
+	}
+
+	.flower {
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		translate: -50% -50%;
+		width: clamp(10.5rem, 28vw, 14rem);
+		aspect-ratio: 1;
+		transform-origin: center;
+		animation: flowerBounce var(--motion-medium) ease-in-out infinite;
+	}
+
+	.petal {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: clamp(4.7rem, 11vw, 5.8rem);
+		height: clamp(2.9rem, 6.5vw, 3.4rem);
+		border-radius: 999px 999px 999px 999px;
+		background: var(--color-petal-1);
+		transform-origin: 0% 50%;
+		translate: 0 -50%;
+		opacity: 0.98;
+	}
+
+	.petal:nth-child(odd) {
+		background: var(--color-petal-2);
+	}
+
+	.p1 {
+		transform: rotate(0deg) translateX(2.2rem);
+	}
+	.p2 {
+		transform: rotate(45deg) translateX(2.2rem);
+	}
+	.p3 {
+		transform: rotate(90deg) translateX(2.2rem);
+	}
+	.p4 {
+		transform: rotate(135deg) translateX(2.2rem);
+	}
+	.p5 {
+		transform: rotate(180deg) translateX(2.2rem);
+	}
+	.p6 {
+		transform: rotate(225deg) translateX(2.2rem);
+	}
+	.p7 {
+		transform: rotate(270deg) translateX(2.2rem);
+	}
+	.p8 {
+		transform: rotate(315deg) translateX(2.2rem);
+	}
+
+	.core {
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		width: clamp(2.7rem, 6.8vw, 3.5rem);
+		height: clamp(2.7rem, 6.8vw, 3.5rem);
+		border-radius: 50%;
+		background: radial-gradient(circle at 30% 30%, #fff6d1 0%, var(--color-core) 72%);
+		border: 0.3rem solid color-mix(in srgb, #ffffff, transparent 20%);
+	}
+
+	.stem {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		translate: -50% 0;
+		width: 0.55rem;
+		height: 40%;
+		border-radius: 999px;
+		background: var(--color-stem-1);
+	}
+
+	.leaf {
+		position: absolute;
+		top: 67%;
+		width: 4rem;
+		height: 1.8rem;
+		background: var(--color-leaf-1);
+		border-radius: 100% 0 100% 0;
+		opacity: 0.95;
+	}
+
+	.leaf-left {
+		left: 50%;
+		translate: -95% 0;
+		transform: rotate(-32deg);
+	}
+
+	.leaf-right {
+		left: 50%;
+		translate: -5% 0;
+		transform: rotate(32deg) scaleX(-1);
+	}
+
+	@media (max-width: 430px) {
+		.app-shell {
+			gap: var(--space-4);
+			padding: var(--space-4) var(--space-2);
+		}
+
+		.wishes {
+			width: min(92vw, 22rem);
+			margin-bottom: var(--space-4);
+		}
+
+		.wishes h1 {
+			font-size: clamp(1.15rem, 6.2vw, 1.6rem);
+			line-height: 1.25;
+		}
+
+		.flower-stage {
+			width: min(94vw, 21rem);
+			aspect-ratio: 1 / 1.15;
+		}
+
+		.click-hint {
+			margin-top: var(--space-4);
+		}
+
+		.flower {
+			width: clamp(9rem, 38vw, 11rem);
+		}
+
+		.petal {
+			width: clamp(4.2rem, 10vw, 5rem);
+			height: clamp(2.6rem, 5.8vw, 3rem);
+		}
+
+		.p1 {
+			transform: rotate(0deg) translateX(2rem);
+		}
+		.p2 {
+			transform: rotate(45deg) translateX(2rem);
+		}
+		.p3 {
+			transform: rotate(90deg) translateX(2rem);
+		}
+		.p4 {
+			transform: rotate(135deg) translateX(2rem);
+		}
+		.p5 {
+			transform: rotate(180deg) translateX(2rem);
+		}
+		.p6 {
+			transform: rotate(225deg) translateX(2rem);
+		}
+		.p7 {
+			transform: rotate(270deg) translateX(2rem);
+		}
+		.p8 {
+			transform: rotate(315deg) translateX(2rem);
+		}
+
+		.stem {
+			top: 43%;
+			width: 0.65rem;
+			height: 46%;
+		}
+
+		.leaf {
+			top: 69%;
+			width: 3.4rem;
+			height: 1.6rem;
+		}
+	}
+
+	@media (max-height: 750px) {
+		.app-shell {
+			gap: var(--space-2);
+			padding-block: var(--space-2);
+		}
+
+		.flower-stage {
+			width: min(82vw, 18rem);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.wishes,
+		.click-hint,
+		.flower-stage,
+		.flower,
+		.flower-glow {
+			animation: none;
+		}
+
+		.rain-petal {
+			animation: none;
+			opacity: 0;
+		}
+	}
+
+	@keyframes hintBreath {
+		0%,
+		100% {
+			opacity: 0.55;
+			color: var(--color-muted);
+		}
+		50% {
+			opacity: 1;
+			color: var(--color-text);
+		}
+	}
+
+	@keyframes petalFall {
+		0% {
+			transform: translate3d(0, -10vh, 0) rotate(var(--rotation, 0deg));
+			opacity: 0;
+		}
+		15% {
+			opacity: 0.95;
+		}
+		100% {
+			transform: translate3d(var(--drift, 0px), 120vh, 0) rotate(calc(var(--rotation, 0deg) + 240deg));
+			opacity: 0;
+		}
+	}
+
+	@keyframes flowerDrop {
+		0% {
+			transform: translateY(-120vh);
+		}
+		75% {
+			transform: translateY(6vh);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes flowerBounce {
+		0%,
+		100% {
+			transform: translateY(0px) rotate(-0.8deg);
+		}
+		35% {
+			transform: translateY(-4px) rotate(1.1deg);
+		}
+		70% {
+			transform: translateY(-1px) rotate(-0.9deg);
+		}
+	}
+
+	@keyframes glowPulse {
+		0%,
+		100% {
+			opacity: 0.6;
+			transform: scale(0.96);
+		}
+		50% {
+			opacity: 0.85;
+			transform: scale(1.04);
+		}
+	}
+}
